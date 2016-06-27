@@ -1,0 +1,102 @@
+package entry.u_22;
+
+import android.support.v7.app.ActionBarActivity;
+import android.telephony.TelephonyManager;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.Toast;
+
+
+public class EntryActivity extends ActionBarActivity {
+	public static final int MENU_SELECT_titleList = 0;
+	private TelephonyManager tel;
+	private WebView webview;
+	private String device_id;
+	
+    @SuppressLint("SetJavaScriptEnabled") @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_entry);
+        tel=(TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+        webview=(WebView)findViewById(R.id.webView);
+        //デバイス上でWEB表示をさせるための設定
+        webview.setWebViewClient(new WebViewClient());
+        //javascript有効設定
+        webview.getSettings().setJavaScriptEnabled(true);
+        //javascript等UIを変更される処理の設定
+        webview.setWebChromeClient(new WebChromeClient());
+        //余白を消す
+        webview.setVerticalScrollbarOverlay(true);
+        deviceid();
+        //http://mrt.boy.jp/assets/try.php
+        webview.loadUrl("http://hal.ovdesign.jp/u22/php/logincheck.php?id="+device_id);
+        //webview.loadUrl("file:///android_asset/menu.html?id="+device_id);
+    }
+    
+    
+    
+    //Activityに来た時
+    @Override
+    protected void onStart(){
+    	super.onStart();
+    	deviceid();
+    }
+    
+    //activityへ行く時
+    @Override
+    protected void onResume(){
+    	super.onResume();
+    }
+ 
+
+    
+    private void deviceid(){
+    	device_id=tel.getDeviceId();
+    }
+    
+    
+    //Android搭載の戻るボタン押した時にブラウザを一つ戻すという動作
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+         if(keyCode == KeyEvent.KEYCODE_BACK && webview.canGoBack()) {
+              webview.goBack();
+              return true;
+         }
+         return super.onKeyDown(keyCode, event);
+    }
+    
+    
+    //オプションメニュー項目作成
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.entry, menu);
+        //オプションメニュー押したときの表示ボタンの配列番号と名前設定
+        menu.add(0,MENU_SELECT_titleList,1,getString(R.string.action_titlelist));
+        return true;
+    }
+    //オプションメニュー項目の選択時動作
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+                
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        else if(id == MENU_SELECT_titleList){
+        	//ここが「タイトルリストへ」を押した時のクリックリスナー
+        	Toast.makeText(EntryActivity.this,"押したで",Toast.LENGTH_LONG).show();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+}
