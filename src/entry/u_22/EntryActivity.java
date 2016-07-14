@@ -28,9 +28,7 @@ public class EntryActivity extends ActionBarActivity {
 	 * (non-Javadoc)
 	 * @see android.support.v7.app.ActionBarActivity#onCreate(android.os.Bundle)
 	 */
-	/*
-	 *‚¨‚É‚¬‚è 
-	 * 
+	/**
 	 */
 	
     @SuppressLint("SetJavaScriptEnabled") @Override
@@ -49,6 +47,7 @@ public class EntryActivity extends ActionBarActivity {
         webview.setVerticalScrollbarOverlay(true);
         deviceid();
         //http://mrt.boy.jp/assets/try.php
+        webview.loadUrl("http://hal.ovdesign.jp/u22/php/logincheck.php?id="+device_id);
         //webview.loadUrl("file:///android_asset/menu.html?id="+device_id);
     }
     
@@ -65,8 +64,6 @@ public class EntryActivity extends ActionBarActivity {
     @Override
     protected void onResume(){
     	super.onResume();
-        webview.loadUrl("http://hal.ovdesign.jp/u22/php/logincheck.php?id="+device_id);
-
     }
  
 
