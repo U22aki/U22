@@ -24,12 +24,6 @@ public class EntryActivity extends ActionBarActivity {
 	private WebView webview;
 	private String device_id;
 	private URL webURL;
-	/*
-	 * (non-Javadoc)
-	 * @see android.support.v7.app.ActionBarActivity#onCreate(android.os.Bundle)
-	 */
-	/**
-	 */
 	
     @SuppressLint("SetJavaScriptEnabled") @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,18 +31,7 @@ public class EntryActivity extends ActionBarActivity {
         setContentView(R.layout.activity_entry);
         tel=(TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
         webview=(WebView)findViewById(R.id.webView);
-        //デバイス上でWEB表示をさせるための設定
-        webview.setWebViewClient(new WebViewClient());
-        //javascript有効設定
-        webview.getSettings().setJavaScriptEnabled(true);
-        //javascript等UIを変更される処理の設定
-        webview.setWebChromeClient(new WebChromeClient());
-        //余白を消す
-        webview.setVerticalScrollbarOverlay(true);
-        deviceid();
-        //http://mrt.boy.jp/assets/try.php
         webview.loadUrl("http://hal.ovdesign.jp/u22/php/logincheck.php?id="+device_id);
-        //webview.loadUrl("file:///android_asset/menu.html?id="+device_id);
     }
     
     
@@ -61,11 +44,23 @@ public class EntryActivity extends ActionBarActivity {
     }
     
     //activityへ行く時
-    @Override
+    @SuppressLint("SetJavaScriptEnabled") @Override
     protected void onResume(){
     	super.onResume();
+    
+
+        //デバイス上でWEB表示をさせるための設定
+        webview.setWebViewClient(new WebViewClient());
+        //javascript有効設定
+        webview.getSettings().setJavaScriptEnabled(true);
+        //javascript等UIを変更される処理の設定
+        webview.setWebChromeClient(new WebChromeClient());
+        //余白を消す
+        webview.setVerticalScrollbarOverlay(true);
+        deviceid();
+        webview.loadUrl("http://hal.ovdesign.jp/u22/php/logincheck.php?id="+device_id);
     }
- 
+
 
     
     private void deviceid(){
