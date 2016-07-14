@@ -7,7 +7,7 @@ public class CheckURL {
 	 * URLをチェック
 	 */
 	public boolean checkURL(String url){
-		String regex = ""
+		String regex = "";
 		return correctURL;
 	}
 }
