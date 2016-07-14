@@ -28,6 +28,10 @@ public class EntryActivity extends ActionBarActivity {
 	 * (non-Javadoc)
 	 * @see android.support.v7.app.ActionBarActivity#onCreate(android.os.Bundle)
 	 */
+	/*
+	 *‚¨‚É‚¬‚è 
+	 * 
+	 */
 	
     @SuppressLint("SetJavaScriptEnabled") @Override
     protected void onCreate(Bundle savedInstanceState) {
