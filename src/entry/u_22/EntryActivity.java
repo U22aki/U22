@@ -1,5 +1,9 @@
 package entry.u_22;
 
+import java.net.URL;
+
+import utility.CheckURL;
+
 import android.support.v7.app.ActionBarActivity;
 import android.telephony.TelephonyManager;
 import android.annotation.SuppressLint;
@@ -19,6 +23,7 @@ public class EntryActivity extends ActionBarActivity {
 	private TelephonyManager tel;
 	private WebView webview;
 	private String device_id;
+	private URL webURL;
 	
     @SuppressLint("SetJavaScriptEnabled") @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +87,7 @@ public class EntryActivity extends ActionBarActivity {
         menu.add(0,MENU_SELECT_titleList,1,getString(R.string.action_titlelist));
         return true;
     }
+    
     //オプションメニュー項目の選択時動作
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -92,11 +98,16 @@ public class EntryActivity extends ActionBarActivity {
                 
         if (id == R.id.action_settings) {
             return true;
-        }
-        else if(id == MENU_SELECT_titleList){
+        }else if(id == MENU_SELECT_titleList){
         	//ここが「タイトルリストへ」を押した時のクリックリスナー
         	Toast.makeText(EntryActivity.this,"押したで",Toast.LENGTH_LONG).show();
+        }else if(id == R.id.in_cart){
+        	//Toast.makeText(EntryActivity.this,"カートに入れる",Toast.LENGTH_LONG).show();
+        	String url = webview.getUrl();
+        	CheckURL cu = new CheckURL();
+        	cu.checkURL(url);
         }
+        
         return super.onOptionsItemSelected(item);
     }
 }

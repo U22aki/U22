@@ -2,6 +2,9 @@ package utility;
 /**
  * スクレイピングクラス
  */
-public class Scraping {
 
+public class Scraping {
+	public void executeScaping(){
+		
+	}
 }
