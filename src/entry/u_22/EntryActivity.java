@@ -25,6 +25,7 @@ public class EntryActivity extends ActionBarActivity {
 	private String device_id;
 	private URL webURL;
 	/*
+	 *
 	 * (non-Javadoc)
 	 * @see android.support.v7.app.ActionBarActivity#onCreate(android.os.Bundle)
 	 */
