@@ -1,5 +1,9 @@
-package entry.u_22;
+package cart;
 
+import entry.u_22.R;
+import entry.u_22.R.id;
+import entry.u_22.R.layout;
+import entry.u_22.R.menu;
 import android.support.v7.app.ActionBarActivity;
 import android.telephony.TelephonyManager;
 import android.annotation.SuppressLint;
@@ -12,7 +16,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class CartActivity extends ActionBarActivity {
+public class ProductsActivity extends ActionBarActivity {
 	private TelephonyManager tel;
 	private WebView webview;
 	/**
@@ -24,9 +28,8 @@ public class CartActivity extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_cart);
-		
-		
+		setContentView(R.layout.activity_products);
+
 		tel=(TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
         webview=(WebView)findViewById(R.id.webView2);
         //デバイス上でWEB表示をさせるための設定
@@ -84,7 +87,7 @@ public class CartActivity extends ActionBarActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.cart, menu);
+		getMenuInflater().inflate(R.menu.products, menu);
 		return true;
 	}
 

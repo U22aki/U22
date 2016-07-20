@@ -2,6 +2,8 @@ package entry.u_22;
 
 import java.net.URL;
 
+import cart.ProductsActivity;
+
 import utility.CheckURL;
 
 import android.support.v7.app.ActionBarActivity;
@@ -77,7 +79,7 @@ public class EntryActivity extends ActionBarActivity {
     
     //‘JˆÚ‚µ‚½Œã‚ÌWebView‚ÌƒpƒX‚ðŒˆ‚ß‚é•¨
     private void shopping_url(String check){
-    	Intent intent=new Intent(this,CartActivity.class);
+    	Intent intent=new Intent(this,ProductsActivity.class);
     	intent.putExtra("check", check);
     	startActivity(intent);
     	

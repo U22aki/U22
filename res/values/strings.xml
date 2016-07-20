@@ -9,5 +9,7 @@
     <string name="in_cart">カートに入れる</string>
     <string name="title_activity_new_file">NewFileActivity</string>
     <string name="title_activity_cart">CartActivity</string>
+    <string name="title_activity_products">ProductsActivity</string>
+    <string name="title_activity_aa">AaActivity</string>
 
 </resources>

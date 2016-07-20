@@ -8,8 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="entry.u_22.CartActivity" 
-    android:background="@color/black" >
+    tools:context="cart.ProductsActivity"
+        android:background="@color/black" >
 
     <WebView
         android:id="@+id/webView2"

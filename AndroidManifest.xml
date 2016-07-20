@@ -33,6 +33,14 @@
             android:name=".CartActivity"
             android:label="@string/title_activity_cart" >
         </activity>
+        <activity
+            android:name="cart.ProductsActivity"
+            android:label="@string/title_activity_products" >
+        </activity>
+        <activity
+            android:name=".AaActivity"
+            android:label="@string/title_activity_aa" >
+        </activity>
     </application>
 
 </manifest>

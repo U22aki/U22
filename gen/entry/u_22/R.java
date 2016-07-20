@@ -1144,8 +1144,8 @@ containing a value of this type.
         public static final int top_action_bar=0x7f050020;
         public static final int up=0x7f050021;
         public static final int useLogo=0x7f050003;
-        public static final int webView=0x7f05003e;
-        public static final int webView2=0x7f05003d;
+        public static final int webView=0x7f05003d;
+        public static final int webView2=0x7f05003e;
         public static final int withText=0x7f05000c;
     }
     public static final class integer {
@@ -1198,14 +1198,16 @@ containing a value of this type.
         public static final int abc_search_dropdown_item_icons_2line=0x7f030015;
         public static final int abc_search_view=0x7f030016;
         public static final int abc_simple_decor=0x7f030017;
-        public static final int activity_cart=0x7f030018;
-        public static final int activity_entry=0x7f030019;
+        public static final int activity_entry=0x7f030018;
+        public static final int activity_products=0x7f030019;
         public static final int support_simple_spinner_dropdown_item=0x7f03001a;
     }
     public static final class menu {
-        public static final int cart=0x7f0c0000;
-        public static final int entry=0x7f0c0001;
-        public static final int new_file=0x7f0c0002;
+        public static final int aa=0x7f0c0000;
+        public static final int cart=0x7f0c0001;
+        public static final int entry=0x7f0c0002;
+        public static final int new_file=0x7f0c0003;
+        public static final int products=0x7f0c0004;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1254,8 +1256,10 @@ containing a value of this type.
         public static final int entrytitle=0x7f0a0010;
         public static final int hello_world=0x7f0a000e;
         public static final int in_cart=0x7f0a0012;
+        public static final int title_activity_aa=0x7f0a0016;
         public static final int title_activity_cart=0x7f0a0014;
         public static final int title_activity_new_file=0x7f0a0013;
+        public static final int title_activity_products=0x7f0a0015;
     }
     public static final class style {
         /** 
