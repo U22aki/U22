@@ -47,11 +47,11 @@ public class CartActivity extends ActionBarActivity {
     	String check=getIntent().getExtras().getString("check");
     	String url="";
     	if(check.equals("amazon")){
-    		url="http://www.amazon.co.jp/";
+    		url="https://www.amazon.co.jp/";
     	}else if(check.equals("rakuten")){
     		url="http://www.rakuten.co.jp/";
     	}else if(check.equals("kakaku")){
-    		url="http://kakaku.com/";
+    		url="http://s.kakaku.com/";
     	}
     	
         deviceid();
@@ -64,11 +64,19 @@ public class CartActivity extends ActionBarActivity {
 
     
     
-  //Android搭載の戻るボタン押した時にブラウザを一つ戻すという動作
+  //Android搭載の戻るボタン押した時の動作
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-         if(keyCode == KeyEvent.KEYCODE_BACK && webview.canGoBack()) {
-              finish();
+    	//初めのページへ戻ったならフィニッシュさせる
+    	if(webview.getUrl().equals("https://www.amazon.co.jp/") || 
+   			 webview.getUrl().equals("http://www.rakuten.co.jp/") ||
+   			 webview.getUrl().equals("http://s.kakaku.com/")){
+   		 System.out.println("ふぃにしゅ");
+   		 finish();
+    	}else if(keyCode == KeyEvent.KEYCODE_BACK && webview.canGoBack()) {
+        	 System.out.println("aa");
+        		 webview.goBack();
+             return true;
          }
          return super.onKeyDown(keyCode, event);
     }

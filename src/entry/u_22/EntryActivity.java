@@ -49,11 +49,9 @@ public class EntryActivity extends ActionBarActivity {
         webview.addJavascriptInterface(new Object() {
 			@JavascriptInterface
 			public void pushLink(String check) {
-				System.out.println(check);
 				shopping_url(check);
 			}
 		}, "app");
-        //webview.loadUrl("http://hal.ovdesign.jp/u22/php/logincheck.php?id="+device_id);
     }
     
     
