@@ -8,10 +8,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.telephony.TelephonyManager;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -25,13 +27,33 @@ public class EntryActivity extends ActionBarActivity {
 	private String device_id;
 	private URL webURL;
 	
-    @SuppressLint("SetJavaScriptEnabled") @Override
+	@SuppressLint({ "SetJavaScriptEnabled", "JavascriptInterface" }) 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entry);
         tel=(TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
         webview=(WebView)findViewById(R.id.webView);
-        webview.loadUrl("http://hal.ovdesign.jp/u22/php/logincheck.php?id="+device_id);
+        //デバイス上でWEB表示をさせるための設定
+        webview.setWebViewClient(new WebViewClient());
+        //javascript有効設定
+        webview.getSettings().setJavaScriptEnabled(true);
+        //javascript等UIを変更される処理の設定
+        webview.setWebChromeClient(new WebChromeClient());
+        //余白を消す
+        webview.setVerticalScrollbarOverlay(true);
+        
+        /**
+		 * JavaScriptを使うクラスの前にこれをやってあげると JavaScriptからJavaが見れるようになる
+		 */
+        webview.addJavascriptInterface(new Object() {
+			@JavascriptInterface
+			public void pushLink(String check) {
+				System.out.println(check);
+				shopping_url(check);
+			}
+		}, "app");
+        //webview.loadUrl("http://hal.ovdesign.jp/u22/php/logincheck.php?id="+device_id);
     }
     
     
@@ -47,24 +69,20 @@ public class EntryActivity extends ActionBarActivity {
     @SuppressLint("SetJavaScriptEnabled") @Override
     protected void onResume(){
     	super.onResume();
-    
-
-        //デバイス上でWEB表示をさせるための設定
-        webview.setWebViewClient(new WebViewClient());
-        //javascript有効設定
-        webview.getSettings().setJavaScriptEnabled(true);
-        //javascript等UIを変更される処理の設定
-        webview.setWebChromeClient(new WebChromeClient());
-        //余白を消す
-        webview.setVerticalScrollbarOverlay(true);
         deviceid();
         webview.loadUrl("http://hal.ovdesign.jp/u22/php/logincheck.php?id="+device_id);
     }
 
-
-    
     private void deviceid(){
     	device_id=tel.getDeviceId();
+    }
+    
+    //遷移した後のWebViewのパスを決める物
+    private void shopping_url(String check){
+    	Intent intent=new Intent(this,CartActivity.class);
+    	intent.putExtra("check", check);
+    	startActivity(intent);
+    	
     }
     
     
