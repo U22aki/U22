@@ -4,9 +4,9 @@
     tools:context="entry.u_22.EntryActivity" >
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_title_list"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/action_titlelist"
         app:showAsAction="never"/>
     
      <item

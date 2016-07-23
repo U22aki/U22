@@ -23,7 +23,8 @@ import android.widget.Toast;
 
 
 public class EntryActivity extends ActionBarActivity {
-	public static final int MENU_SELECT_titleList = 0;
+	private static final int MENU_SELECT_titleList = 0;
+	private static final int MENU_SELECT_cart = 1;
 	private TelephonyManager tel;
 	private WebView webview;
 	private String device_id;
@@ -103,7 +104,8 @@ public class EntryActivity extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.entry, menu);
         //オプションメニュー押したときの表示ボタンの配列番号と名前設定
-        menu.add(0,MENU_SELECT_titleList,1,getString(R.string.action_titlelist));
+        //menu.add(Menu.NONE, MENU_SELECT_titleList, Menu.NONE, getString(R.string.action_titlelist));
+        //menu.add(Menu.NONE, MENU_SELECT_cart, Menu.NONE, getString(R.string.in_cart));
         return true;
     }
     
@@ -113,8 +115,9 @@ public class EntryActivity extends ActionBarActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-                
+        //int id = item.getItemId();
+             
+        /*
         if (id == R.id.action_settings) {
             return true;
         }else if(id == MENU_SELECT_titleList){
@@ -125,6 +128,17 @@ public class EntryActivity extends ActionBarActivity {
         	String url = webview.getUrl();
         	CheckURL cu = new CheckURL();
         	cu.checkURL(url);
+        }*/
+    	
+    	// addしたときのIDで識別
+        switch (item.getItemId()) {
+        case R.id.action_title_list:
+            Toast.makeText(this, "アイテム A", Toast.LENGTH_LONG).show();
+            return true;
+     
+        case R.id.in_cart:
+            Toast.makeText(this, "アイテム B", Toast.LENGTH_LONG).show();
+            return true;
         }
         
         return super.onOptionsItemSelected(item);
