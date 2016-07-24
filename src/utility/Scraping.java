@@ -18,30 +18,9 @@ public class Scraping {
 	 */
 	public static void executeScraping(String siteUrl){
 		//URLチェック
-		if(siteUrl.indexOf("amazon.com") == -1){
-			//amazonのスクレイピング可能ページか調べる
-			regex = "(https:\\/\\/|http:\\/\\/)www\\.amazon\\.co\\.jp\\/(.+?)\\/dp\\/(.+?)\\/ref=(.+?)\\?ie=UTF8&qid=[0-9]+?&sr=(.+?)&keywords=(.+?)$";
-			checkPattern(regex, siteUrl);
-		}else if(siteUrl.indexOf("rakuten.com") == -1){
-			//楽天のスクレイピング可能ページか調べる
-			
-		}else if(siteUrl.indexOf("kakaku.com") == -1){
-			//価格ドットコムのスクレイピング可能ページか調べる
-			
-		}else{
-			//スクレイピング不可能なページ
-			
-		}
+		CheckURL.checkURL(siteUrl);
+		
+		
 	}
 	
-	private static void checkPattern(String regex, String siteUrl){
-		Pattern p = Pattern.compile(regex);
-		Matcher m = p.matcher(siteUrl);
-
-		if(m.find()){
-			System.out.println("マッチしています");
-		}else{
-			System.out.println("マッチしていません");
-		}
-	}
 }
