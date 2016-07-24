@@ -5,6 +5,7 @@ import java.net.URL;
 import cart.ProductsActivity;
 
 import utility.CheckURL;
+import utility.Scraping;
 
 import android.support.v7.app.ActionBarActivity;
 import android.telephony.TelephonyManager;
@@ -97,7 +98,7 @@ public class EntryActivity extends ActionBarActivity {
          return super.onKeyDown(keyCode, event);
     }
     
-    
+    /*
     //オプションメニュー項目作成
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -108,6 +109,7 @@ public class EntryActivity extends ActionBarActivity {
         //menu.add(Menu.NONE, MENU_SELECT_cart, Menu.NONE, getString(R.string.in_cart));
         return true;
     }
+    */
     
     //オプションメニュー項目の選択時動作
     @Override
@@ -137,7 +139,7 @@ public class EntryActivity extends ActionBarActivity {
             return true;
      
         case R.id.in_cart:
-            Toast.makeText(this, "アイテム B", Toast.LENGTH_LONG).show();
+            Scraping.executeScraping(webview.getUrl());
             return true;
         }
         
