@@ -1,5 +1,6 @@
 package entry.u_22;
 
+import java.io.IOException;
 import java.net.URL;
 
 import cart.ProductsActivity;
@@ -139,7 +140,11 @@ public class EntryActivity extends ActionBarActivity {
             return true;
      
         case R.id.in_cart:
-            Scraping.executeScraping(webview.getUrl());
+            try {
+				Scraping.executeScraping(webview.getUrl());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
             return true;
         }
         
