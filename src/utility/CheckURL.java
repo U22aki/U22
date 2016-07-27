@@ -52,12 +52,17 @@ public class CheckURL {
 		return correctURL;
 	}
 	
+	/**
+	 * 取得したサイトURLが正規表現（商品詳細ページ）に該当していたらcorrectURLをtrueにする
+	 * @param regex 正規表現
+	 * @param siteUrl　取得したサイトURL
+	 */
 	private static void checkPattern(String regex, String siteUrl){
 		Pattern p = Pattern.compile(regex);
 		Matcher m = p.matcher(siteUrl);
 
 		if(m.find()){
-			correctURL = true;;
+			correctURL = true;
 		}else{
 			correctURL = false;
 		}
