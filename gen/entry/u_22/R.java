@@ -1094,8 +1094,6 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f090002;
         public static final int action_menu_presenter=0x7f090003;
         public static final int action_mode_close_button=0x7f090024;
-        public static final int action_settings=0x7f09003f;
-        public static final int action_title_list=0x7f090040;
         public static final int activity_chooser_view_content=0x7f090025;
         public static final int always=0x7f09000f;
         public static final int beginning=0x7f090016;
@@ -1114,7 +1112,7 @@ containing a value of this type.
         public static final int icon=0x7f09002a;
         public static final int ifRoom=0x7f090011;
         public static final int image=0x7f090027;
-        public static final int in_cart=0x7f090041;
+        public static final int in_cart=0x7f09003f;
         public static final int listMode=0x7f090006;
         public static final int list_item=0x7f090029;
         public static final int middle=0x7f090018;
@@ -1204,11 +1202,7 @@ containing a value of this type.
         public static final int support_simple_spinner_dropdown_item=0x7f03001a;
     }
     public static final class menu {
-        public static final int aa=0x7f0c0000;
-        public static final int cart=0x7f0c0001;
-        public static final int entry=0x7f0c0002;
-        public static final int new_file=0x7f0c0003;
-        public static final int products=0x7f0c0004;
+        public static final int option_menu=0x7f0c0000;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 

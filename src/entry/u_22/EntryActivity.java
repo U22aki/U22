@@ -85,7 +85,6 @@ public class EntryActivity extends ActionBarActivity {
     	Intent intent=new Intent(this,ProductsActivity.class);
     	intent.putExtra("check", check);
     	startActivity(intent);
-    	
     }
     
     
@@ -133,7 +132,8 @@ public class EntryActivity extends ActionBarActivity {
         	cu.checkURL(url);
         }*/
     	
-    	// add‚µ‚½‚Æ‚«‚ÌID‚ÅŽ¯•Ê
+    	// entry.xml‚ÌID‚ÅŽ¯•Ê
+    	/*
         switch (item.getItemId()) {
         case R.id.action_title_list:
             Toast.makeText(this, "ƒAƒCƒeƒ€ A", Toast.LENGTH_LONG).show();
@@ -147,6 +147,7 @@ public class EntryActivity extends ActionBarActivity {
 			}
             return true;
         }
+        */
         
         return super.onOptionsItemSelected(item);
     }
