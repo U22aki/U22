@@ -1,6 +1,7 @@
 package cart;
 
 import java.io.IOException;
+import java.util.List;
 
 import utility.AsyncScraping;
 import utility.Scraping;
@@ -12,6 +13,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.telephony.TelephonyManager;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -21,7 +23,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-public class ProductsActivity extends ActionBarActivity {
+public class ProductsActivity extends ActionBarActivity implements AsyncTaskCallbacks{
 	private TelephonyManager tel;
 	private WebView webview;
 	/**
@@ -107,11 +109,21 @@ public class ProductsActivity extends ActionBarActivity {
             */
      
         case R.id.in_cart:
-            //Scraping.run(webview.getUrl());
-			AsyncScraping as = new AsyncScraping(this);
-			as.
+			AsyncScraping as = new AsyncScraping(webview.getUrl(), this);
+			as.execute(webview.getUrl());
+			break;
         }
 		
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onTaskFinished() {
+		Toast.makeText(this, "AsyncScrapingÇ™èIóπÇµÇ‹ÇµÇΩ", Toast.LENGTH_LONG).show();
+	}
+
+	@Override
+	public void onTaskCancelled() {
+		Toast.makeText(this, "AsyncScrapingÇ™ÉLÉÉÉìÉZÉãÇµÇ‹ÇµÇΩ", Toast.LENGTH_LONG).show();
 	}
 }
