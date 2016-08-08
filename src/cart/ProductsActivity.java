@@ -101,13 +101,7 @@ public class ProductsActivity extends ActionBarActivity implements AsyncTaskCall
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// entry.xml‚ÌID‚ÅŽ¯•Ê
-        switch (item.getItemId()) {
-        /*
-        case R.id.action_title_list:
-            Toast.makeText(this, "ƒAƒCƒeƒ€ A", Toast.LENGTH_LONG).show();
-            return true;
-            */
-     
+        switch (item.getItemId()) {  
         case R.id.in_cart:
 			AsyncScraping as = new AsyncScraping(webview.getUrl(), this);
 			as.execute(webview.getUrl());
