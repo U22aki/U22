@@ -103,6 +103,7 @@ public class ProductsActivity extends ActionBarActivity implements AsyncTaskCall
 		// entry.xml‚ÌID‚ÅŽ¯•Ê
         switch (item.getItemId()) {  
         case R.id.in_cart:
+        	
 			AsyncScraping as = new AsyncScraping(webview.getUrl(), this);
 			as.execute(webview.getUrl());
 			break;

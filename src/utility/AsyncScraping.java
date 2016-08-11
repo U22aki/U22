@@ -33,28 +33,29 @@ public class AsyncScraping extends AsyncTask<String, Integer, String> {
 		// 呼び出し元アクティビティ
 		this.siteUrl = siteUrl;
 		this.callback = callback;
+		array = new ArrayList<String>();
 	}
 
 	/**
 	 * バックグラウンド処理
+	 * 
 	 * @return
 	 */
 	@Override
 	protected String doInBackground(String... params) {
 		System.out.println("asyncAAAAAAAAA");
 		// スクレイピング可能なURLならスクレイピングを行い、メッセージを返す
-		Document doc;
-		array = new ArrayList<String>();
 		try {
-			doc = Jsoup.connect(siteUrl).get();
+			//HTMLのドキュメントを取得する（HTTPへリクエストを飛ばす）
+			Document doc = Jsoup.connect(siteUrl).get();
+			
 			String titleTag = "";
 			String priceTag = "";
 			String thumbnailTag = "";
 
-		
 			if (siteUrl.indexOf("amazon") != -1) {
 				System.out.println("amazon");
-				
+
 				// アマゾン
 				titleTag = "#product-title";
 				priceTag = "html body font font";
@@ -71,19 +72,39 @@ public class AsyncScraping extends AsyncTask<String, Integer, String> {
 				 */
 			}
 
-			// 商品名を取得して格納
-			element = doc.select(titleTag);
-			array.add(element.text());
+			try {
+				// 商品名を取得して格納
+				element = doc.select(titleTag);
+				array.add(element.text().toString());
+				System.out.println(element.text().toString());
+			} catch (Exception e) {
+				System.out.println("商品名取得失敗");
+				e.printStackTrace();
+			}
 
-			// 価格を取得して格納
-			element = doc.select(priceTag);
-			String price = element.get(0).text().toString();
-			array.add(price);
+			try {
+				// 価格を取得して格納
+				element = doc.select(priceTag);
+				String price = element.get(0).text().toString();
+				array.add(price);
+			} catch (Exception e) {
+				System.out.println("価格取得失敗");
+				e.printStackTrace();
+			}
 
-			// 商品画像URLを取得して格納
-			element = doc.select(thumbnailTag);
-			array.add(element.attr("src"));
+			try {
+				// 商品画像URLを取得して格納
+				element = doc.select(thumbnailTag);
+				array.add(element.attr("src").toString());
+			} catch (Exception e) {
+				System.out.println("商品画像URL取得失敗");
+				e.printStackTrace();
+			}
+			
 			System.out.println("good");
+			for(String a: array){
+				System.out.println(a);
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -93,24 +114,24 @@ public class AsyncScraping extends AsyncTask<String, Integer, String> {
 		String a = "カートに入れました";
 		return a;
 	}
-	
+
+	// 処理中の処理
 	@Override
-	protected void onProgressUpdate(Integer... progress){
-		
+	protected void onProgressUpdate(Integer... progress) {
+
 	}
-	
-	//AsyncScrapig終了時にコールされる
+
+	// AsyncScrapig終了時にコールされる
 	@Override
-	protected void onPostExecute(String a){
+	protected void onPostExecute(String a) {
 		callback.onTaskFinished();
-		//Toast.makeText(productsActivity, a, Toast.LENGTH_LONG).show();
+		// Toast.makeText(productsActivity, a, Toast.LENGTH_LONG).show();
 	}
-	
-	//AsyncScrapigキャンセル時にコールされる
+
+	// AsyncScrapigキャンセル時にコールされる
 	@Override
-	protected void onCancelled(){
+	protected void onCancelled() {
 		callback.onTaskCancelled();
 	}
-	
-	
+
 }
