@@ -16,11 +16,11 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-public class AsyncScraping extends AsyncTask<String, Integer, String> {
+public class AsyncScraping extends AsyncTask<String, Integer, List<String>> {
 
 	private static Elements elements;
 	private static Elements element;
-	private static List<String> array;
+	private static List<String> array = new ArrayList<String>();;
 	private String siteUrl;
 	private AsyncTaskCallbacks callback = null;
 
@@ -33,7 +33,7 @@ public class AsyncScraping extends AsyncTask<String, Integer, String> {
 		// 呼び出し元アクティビティ
 		this.siteUrl = siteUrl;
 		this.callback = callback;
-		array = new ArrayList<String>();
+		//array = new ArrayList<String>();
 	}
 
 	/**
@@ -42,12 +42,12 @@ public class AsyncScraping extends AsyncTask<String, Integer, String> {
 	 * @return
 	 */
 	@Override
-	protected String doInBackground(String... params) {
-		System.out.println("asyncAAAAAAAAA");
+	protected List<String> doInBackground(String... params) {
+		System.out.println(siteUrl);
 		// スクレイピング可能なURLならスクレイピングを行い、メッセージを返す
 		try {
 			//HTMLのドキュメントを取得する（HTTPへリクエストを飛ばす）
-			Document doc = Jsoup.connect(siteUrl).get();
+			Document doc = Jsoup.connect(siteUrl).timeout(0).get();
 			
 			String titleTag = "";
 			String priceTag = "";
@@ -74,9 +74,10 @@ public class AsyncScraping extends AsyncTask<String, Integer, String> {
 
 			try {
 				// 商品名を取得して格納
+				System.out.println("priceName");
 				element = doc.select(titleTag);
 				array.add(element.text().toString());
-				System.out.println(element.text().toString());
+				System.out.println(array.get(0));
 			} catch (Exception e) {
 				System.out.println("商品名取得失敗");
 				e.printStackTrace();
@@ -111,8 +112,7 @@ public class AsyncScraping extends AsyncTask<String, Integer, String> {
 			System.out.println("bat");
 		}
 		System.out.println("cheeek");
-		String a = "カートに入れました";
-		return a;
+		return array;
 	}
 
 	// 処理中の処理
@@ -123,7 +123,11 @@ public class AsyncScraping extends AsyncTask<String, Integer, String> {
 
 	// AsyncScrapig終了時にコールされる
 	@Override
-	protected void onPostExecute(String a) {
+	protected void onPostExecute(List<String> array) {
+		
+		for(String ab : array){
+			System.out.println(ab);
+		}
 		callback.onTaskFinished();
 		// Toast.makeText(productsActivity, a, Toast.LENGTH_LONG).show();
 	}
