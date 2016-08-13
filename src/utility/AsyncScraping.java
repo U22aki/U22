@@ -5,6 +5,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -20,7 +23,7 @@ public class AsyncScraping extends AsyncTask<String, Integer, List<String>> {
 
 	private static Elements elements;
 	private static Elements element;
-	private static List<String> array = new ArrayList<String>();;
+	private static List<String> array;
 	private String siteUrl;
 	private AsyncTaskCallbacks callback = null;
 
@@ -33,7 +36,6 @@ public class AsyncScraping extends AsyncTask<String, Integer, List<String>> {
 		// 呼び出し元アクティビティ
 		this.siteUrl = siteUrl;
 		this.callback = callback;
-		//array = new ArrayList<String>();
 	}
 
 	/**
@@ -44,7 +46,9 @@ public class AsyncScraping extends AsyncTask<String, Integer, List<String>> {
 	@Override
 	protected List<String> doInBackground(String... params) {
 		System.out.println(siteUrl);
-		// スクレイピング可能なURLならスクレイピングを行い、メッセージを返す
+		
+		HttpClient httpClient = new DefaultHttpClient();
+		HttpGet httpGet = new HttpGet(siteUrl);
 		try {
 			//HTMLのドキュメントを取得する（HTTPへリクエストを飛ばす）
 			Document doc = Jsoup.connect(siteUrl).timeout(0).get();

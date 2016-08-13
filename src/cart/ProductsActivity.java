@@ -1,6 +1,7 @@
 package cart;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import utility.AsyncScraping;
@@ -26,6 +27,7 @@ import android.widget.Toast;
 public class ProductsActivity extends ActionBarActivity implements AsyncTaskCallbacks{
 	private TelephonyManager tel;
 	private WebView webview;
+	
 	/**
 	 * ここでのデバイスIDはスクレイピングした時のDBアクセス時に使う
 	 */
@@ -102,8 +104,7 @@ public class ProductsActivity extends ActionBarActivity implements AsyncTaskCall
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// entry.xmlのIDで識別
         switch (item.getItemId()) {  
-        case R.id.in_cart:
-        	
+        case R.id.in_cart:     	
 			AsyncScraping as = new AsyncScraping(webview.getUrl(), this);
 			as.execute(webview.getUrl());
 			break;
