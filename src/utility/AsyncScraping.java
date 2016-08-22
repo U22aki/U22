@@ -22,7 +22,6 @@ import android.widget.Toast;
 public class AsyncScraping extends AsyncTask<String, Integer, List<String>> {
 
 	private static Elements elements;
-	private static Elements element;
 	private static List<String> array;
 	private String siteUrl;
 	private AsyncTaskCallbacks callback = null;
@@ -47,8 +46,6 @@ public class AsyncScraping extends AsyncTask<String, Integer, List<String>> {
 	protected List<String> doInBackground(String... params) {
 		System.out.println(siteUrl);
 		
-		HttpClient httpClient = new DefaultHttpClient();
-		HttpGet httpGet = new HttpGet(siteUrl);
 		try {
 			//HTML‚ÌƒhƒLƒ…ƒƒ“ƒg‚ğæ“¾‚·‚éiHTTP‚ÖƒŠƒNƒGƒXƒg‚ğ”ò‚Î‚·j
 			Document doc = Jsoup.connect(siteUrl).timeout(0).get();
@@ -56,6 +53,7 @@ public class AsyncScraping extends AsyncTask<String, Integer, List<String>> {
 			String titleTag = "";
 			String priceTag = "";
 			String thumbnailTag = "";
+			Elements element = null;
 
 			if (siteUrl.indexOf("amazon") != -1) {
 				System.out.println("amazon");
@@ -76,35 +74,33 @@ public class AsyncScraping extends AsyncTask<String, Integer, List<String>> {
 				 */
 			}
 
-			try {
+				array = new ArrayList<String>();
 				// ¤•i–¼‚ğæ“¾‚µ‚ÄŠi”[
 				System.out.println("priceName");
 				element = doc.select(titleTag);
-				array.add(element.text().toString());
-				System.out.println(array.get(0));
-			} catch (Exception e) {
-				System.out.println("¤•i–¼æ“¾¸”s");
-				e.printStackTrace();
-			}
+				if(element != null){
+					array.add(element.text().toString());
+				}else{
+					System.out.println("¤•i–¼‚ªæ“¾‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½");
+				}
 
-			try {
 				// ‰¿Ši‚ğæ“¾‚µ‚ÄŠi”[
 				element = doc.select(priceTag);
+				if(element != null){
 				String price = element.get(0).text().toString();
 				array.add(price);
-			} catch (Exception e) {
-				System.out.println("‰¿Šiæ“¾¸”s");
-				e.printStackTrace();
-			}
+				}else{
+					System.out.println("‰¿Ši‚ªæ“¾‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½");
+				}
 
-			try {
+			
 				// ¤•i‰æ‘œURL‚ğæ“¾‚µ‚ÄŠi”[
 				element = doc.select(thumbnailTag);
+				if(element != null){
 				array.add(element.attr("src").toString());
-			} catch (Exception e) {
-				System.out.println("¤•i‰æ‘œURLæ“¾¸”s");
-				e.printStackTrace();
-			}
+				}else{
+					System.out.println("¤•i‰æ‘œ‚ªæ“¾‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½");
+				}
 			
 			System.out.println("good");
 			for(String a: array){
